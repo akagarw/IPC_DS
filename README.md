@@ -7,8 +7,13 @@ Requirements include: GCC Installed and Linux Environment, to be able to use POS
 
 For execution, run the following command in Terminal Window.
 ```
-$ gcc IPC_Medium.c && ./a.out
+$ gcc IPC_MediumName.c && ./a.out
 ```
+## Content:
+- [IPC Using Pipes](https://github.com/akagarw/IPC_DS#ipc-using-pipes) - "IPC_2Way2ChildP.c" and "IPC_2WayPipes.c"
+- [IPC Using Named Pipes/FIFOs](https://github.com/akagarw/IPC_DS#ipc-using-named-pipes\/FIFOs) - "IPC_FIFO_P1.c" and "IPC_FIFO_P2.c"
+
+
 ## IPC Using Pipes
 Pipe is a communication medium between two or more related or interrelated processes. It can be either within one process or a communication between the child and the parent processes. Communication can also be multi-level such as communication between the parent, the child and the grand-child, etc. Communication is achieved by one process writing into the pipe and other reading from the pipe. To achieve the pipe system call, create two files, one to write into the file and another to read from the file.
 
@@ -34,3 +39,20 @@ In the given implementation, constant messages the written by either of the proc
   - [TLDP Org - Pipe() call documentation](https://tldp.org/LDP/lpg/node11.html)  
   - [IPC Using Pipes Explanation in Detail](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_pipes.htm)
 
+
+## IPC Using Named Pipes/FIFOs:
+  Pipes can be used for communication between related processes. To achieve unrelated processes communication,i.e. for processes running at different address spaces, one has to use Named Pipes/FIFOs. Using FIFOs we can execute client program from one terminal, the server program from another terminal, then communicate between them.
+  
+  A Named Pipe is created using the ```mkfifo(fifoFileName,fileMode)``` system call command. This function creates a FIFO special file. The arguments to this function is file name and mode.
+  ```c
+  char *fifoPipe = "/tmp/fifoFile"; 
+  mkfifo(fifoPipe,0666);
+  ```
+  Using the ```open(filename,mode)``` system call the FIFO special file is opened. Messages are entered by the user via Terminal into a character array buffer, then written to the FIFO file using ```write()``` commands, similarly the messages can be read as well from the file to be displayed on the user Terminal. To simulate the IPC the C Files named - "IPC_FIFO_P1.c" and "IPC_FIFO_P2.c" are executed simultaneously via Terminal, then the messages are exchanged just like a Chatting/Messenging app. The Communication stops when either of the user/Terminal Processes enter the "end" word as the message.
+
+- ##### References/Documentation
+  - [Man7 Org - Fifo documentation](https://man7.org/linux/man-pages/man7/fifo.7.html)  
+  - [TLDP Org - Named Pipes documentation](https://tldp.org/LDP/lpg/node15.html)
+  - [IPC using Named Pipes Explanation](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_named_pipes.htm)
+ 
+    
