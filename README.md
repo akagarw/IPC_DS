@@ -11,7 +11,7 @@ $ gcc IPC_MediumName.c && ./a.out
 ```
 ## Content:
 - [IPC Using Pipes](https://github.com/akagarw/IPC_DS#ipc-using-pipes) - "IPC_2Way2ChildP.c" and "IPC_2WayPipes.c"
-- [IPC Using Named Pipes/FIFOs](https://github.com/akagarw/IPC_DS#ipc-using-named-pipes\/FIFOs) - "IPC_FIFO_P1.c" and "IPC_FIFO_P2.c"
+- [IPC Using Named Pipes/FIFOs](https://github.com/akagarw/IPC_DS#ipc-using-named-pipesfifos) - "IPC_FIFO_P1.c" and "IPC_FIFO_P2.c"
 
 
 ## IPC Using Pipes
@@ -48,7 +48,9 @@ In the given implementation, constant messages the written by either of the proc
   char *fifoPipe = "/tmp/fifoFile"; 
   mkfifo(fifoPipe,0666);
   ```
-  Using the ```open(filename,mode)``` system call the FIFO special file is opened. Messages are entered by the user via Terminal into a character array buffer, then written to the FIFO file using ```write()``` commands, similarly the messages can be read as well from the file to be displayed on the user Terminal. To simulate the IPC the C Files named - "IPC_FIFO_P1.c" and "IPC_FIFO_P2.c" are executed simultaneously via Terminal, then the messages are exchanged just like a Chatting/Messenging app. The Communication stops when either of the user/Terminal Processes enter the "end" word as the message.
+  Using the ```open(filename,mode)``` system call the FIFO special file is opened. Messages are entered by the user via Terminal into a character array buffer, then written to the FIFO file using ```write()``` commands, similarly the messages can be read as well from the file to be displayed on the user Terminal.  
+  To simulate the IPC the C Files named - "IPC_FIFO_P1.c" and "IPC_FIFO_P2.c" are executed simultaneously via Terminal, then the messages are exchanged just like a Chatting/Messenging app.   
+  The Communication stops when either of the user/Terminal Processes enter the "end" word as the message.
 
 - ##### References/Documentation
   - [Man7 Org - Fifo documentation](https://man7.org/linux/man-pages/man7/fifo.7.html)  
