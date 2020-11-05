@@ -12,6 +12,7 @@ $ gcc IPC_MediumName.c && ./a.out
 ## Content:
 - [IPC Using Pipes](https://github.com/akagarw/IPC_DS#ipc-using-pipes) - "IPC_2Way2ChildP.c" and "IPC_2WayPipes.c"
 - [IPC Using Named Pipes/FIFOs](https://github.com/akagarw/IPC_DS#ipc-using-named-pipesfifos) - "IPC_FIFO_P1.c" and "IPC_FIFO_P2.c"
+- [IPC Using Message Queues]() - "IPC_MQ_P1.c" and "IPC_MQ_P2.c"
 
 
 ## IPC Using Pipes
@@ -56,5 +57,24 @@ In the given implementation, constant messages the written by either of the proc
   - [Man7 Org - Fifo documentation](https://man7.org/linux/man-pages/man7/fifo.7.html)  
   - [TLDP Org - Named Pipes documentation](https://tldp.org/LDP/lpg/node15.html)
   - [IPC using Named Pipes Explanation](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_named_pipes.htm)
- 
+
+
+## IPC Using Message Queues:
+  A message queue is a linked list of messages stored within the kernel and identified by a message queue identifier. All processes can exchange information through access to a common system message queue. The sending process places a message message-passing module) onto a queue which can be read by another process. Each message is given an identification or type so that processes can select the appropriate message. 
+  Identifier Key is created by ```ftok()``` command. Using the Generated Key a new queue can be created or an existing queue can be opened using ```msgget()``` command. 
+  ```c
+  key_t my_key;
+  int msg_id;
+  
+  my_key = ftok("mqFile",3);		
+  msg_id = msgget(my_key, 0666 | IPC_CREAT); 	
+  ```
+  New messages are added to the end of a queue by msgsnd(). Every message has a positive long integer type field, a non-negative length, and the actual data bytes (corresponding to the length), all of which are specified to msgsnd() when the message is added to a queue. Messages are fetched from a queue by msgrcv().  
+  To simulate the IPC the C Files named - "IPC_MQ_P1.c" and "IPC_MQ_P2.c" are executed simultaneously via Terminal, then the messages are exchanged just like a Chatting/Messenging app.   
+  The Communication stops when either of the user/Terminal Processes enter the "end" word as the message.
+
+  ##### References/Documentation
+  - [Man7 Org - Message Queue Documentation](https://www.man7.org/linux/man-pages/man7/mq_overview.7.html)  
+  - [TLDP Org - Message Queue Documentation](https://tldp.org/LDP/lpg/node27.html)
+  - IPC using Message Queue Explanation [[1](https://www.geeksforgeeks.org/ipc-using-message-queues/)] [[2](https://www.tutorialspoint.com/ipc-using-message-queues)]
     
